@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="tema10.css">
+</head>
+<body onload="funcionAjax('tema103.php',mostrarNombres)">
+    <h2>Tarea 1 Tema 10</h2>
+    
+        <select id="seleccion">
+        </select>
+        <br>
+        <br>
+        <div id="tabla"></div>
+        
+    <script> 
+    
+    function funcionAjax(url, mostrarNombres){
+        var respuesta = new XMLHttpRequest();
+
+        respuesta.onreadystatechange = function(){
+            if(respuesta.readyState == 4 && respuesta.status == 200){
+                mostrarNombres(respuesta);
+               
+            }
+        }
+        respuesta.open("GET", url, true);
+        respuesta.send();
+    }
+    //Creamos un array que recoge los datos enviados por la solictud Ajax para crear la tabla
+    let personas = [];
+
+    function mostrarNombres(respuesta){
+        let obj = JSON.parse(respuesta.responseText);
+        let selec = document.getElementById('seleccion');
+        let opcion;
+        selec.innerHTML = '';
+        
+    //Creamos la opciones select con los nombres de las personas      
+        obj.forEach(dato => {
+           opcion = document.createElement('option');
+           opcion.value = dato.id;
+           opcion.text = dato.nombre;
+           selec.appendChild(opcion); 
+    // //Por cada dato guardamos en el array de personas un objeto con clave id(persona) y valor(datos de la persona)
+           personas[dato.id] = dato;
+        });
+        
+    }
+    //Creamos un evento que al pinchar uno de los nombres, consulte el array de personas y recoja los datos de la persona clicada.
+    let selec = document.getElementById('seleccion');
+    selec.addEventListener("change", function(){
+         let persona = personas[selec.value];
+
+         let tabla = document.createElement('table');
+         tabla.setAttribute("class","nuevaTabla");
+         let filaID = '<tr><th>ID</th><td>' + persona.id + ' </td></tr>';
+         let filaNombre = '<tr><th>Nombre</th><td>' + persona.nombre + '</td></tr>';
+         let filaApellido = '<tr><th>Apellidos</th><td>' + persona.apellidos + '</td></tr>';
+         let filaCiudad = '<tr><th>Ciudad</th><td>' + persona.ciudad + '</td></tr>'; 
+    
+        tabla.innerHTML = `<tbody>${filaID} ${filaNombre}${filaApellido}${filaCiudad}</tbody>`;
+        
+         let divTabla = document.getElementById('tabla');
+         divTabla.innerHTML = "";
+         divTabla.appendChild(tabla);
+         
+    });
+    
+    </script>
+    
+  
+</body>
+</html>

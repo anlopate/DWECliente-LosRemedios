@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="estilo.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+ $(function(){ 
+    function funAjax(e) {
+        e.preventDefault(); // Para no abandonar la página al enviar formulario.
+
+        // //--------- Ajax con Promesas ampliación-----------------------------------------
+        // let marcaForm = document.getElementById("marca").value;
+        // let modeloForm = document.getElementById("modelo").value;
+        
+        // let url = "tarea2.php";
+        // let datos = {marca: marcaForm, modelo: modeloForm};
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: JSON.stringify(datos),
+        //     headers:{
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+
+        // .then(respuesta => respuesta.json())
+        // .then(function(obj){
+        //       let tabla =  document.getElementById("datos");
+        //       let otraFila = document.createElement("tr");
+        //       otraFila.innerHTML = `<td>${obj.marca}</td><td>${obj.modelo}</td>`;
+        //       tabla.appendChild(otraFila);
+              
+        //     }
+        //  );
+
+       
+        //----------------------------------------------------------------------
+        
+        // ---------Ajax con jQuery --------------------------------------------
+        // let marcaForm =$("#marca").val();
+        // let modeloForm = $("#modelo").val();
+        // $.post("tarea2.php",
+        //         {
+        //             marca: marcaForm,
+        //             modelo: modeloForm,
+        //         },
+        //         function(obj){
+        //             obj=JSON.parse(obj);
+        //             $("#datos").html(`<h1>El coche es un ${obj.marca}  ${obj.modelo}.</h1>`)
+        //         }
+        // )
+        
+        //----------------------------------------------------------------------
+
+         // //--------- Ajax con jQuery ampliación-----------------------------------------
+         let marcaForm =$("#marca").val();
+        let modeloForm = $("#modelo").val();
+        $.post("tarea2.php",
+                {
+                    marca: marcaForm,
+                    modelo: modeloForm,
+                },
+                function(obj){
+                    obj=JSON.parse(obj);
+                    let fila = ` <tr><td>Marca</td><td>${obj.marca}</td></tr><tr><td>Modelo</td><td>${obj.modelo}</td></tr>`;
+                    $("#datos").append(fila);
+                }
+        )
+
+    }
+    $('form').submit(funAjax);// Provoca el evento en el formulario.
+})
+
+</script>
+</head>
+<body>
+    <form>
+    <label>Marca:</label><input type="text" id="marca" required="required">
+    <label>Modelo:</label><input type="text" id="modelo" required="required">
+    <button type="submit" >Enviar</button>
+    </form>
+    <table> 
+        <thead>
+            <tr><td>Marca</td><td>Modelo</td></tr>
+            </thead>
+            <tbody id="datos">
+
+            </tbody>
+    </table>
+   
+</body>
+</html> 
+Prueba de examen1_2Eva_vacio.html
+Mostrando Prueba de examen1_2Eva_vacio.html.

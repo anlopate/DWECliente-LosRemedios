@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="tema10.css">
+</head>
+<body>
+    <h2>Tarea 1 Tema 11</h2>
+    
+    <select id="seleccion">
+    </select>
+    <br>
+    <br>
+    <br>
+    <div id="tabla"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+    $(function(){
+            ajax ('', mostrarNombres);
+        });
+
+    function ajax (param, fun){
+      $.get("tema102.php?id="+param, function(obj){
+        obj=JSON.parse(obj);
+        // if(obj)
+        fun(obj);
+    })}
+     
+    function mostrarNombres(result){
+        let selec = document.getElementById('seleccion');
+        // let obj = JSON.parse(respuesta.responseText);
+        let opcion;
+        //el event.target.value, recoge el valor del elemento que provocó el evento. En este caso, option.value. 
+        selec.addEventListener('change', function(){ajax(selec.value,crearTabla)}); //selec.value;
+        //Creamos la opciones select con los nombres de las personas      
+        result.forEach(dato => {
+            opcion = document.createElement('option');
+            opcion.value = dato.id;
+            opcion.text = dato.nombre;
+            selec.appendChild(opcion); 
+        });
+      
+    }
+   
+    function crearTabla(result){
+   
+    // let obj = JSON.parse(respuesta.responseText);
+    let tabla = document.createElement('table');
+    tabla.setAttribute("class","nuevaTabla");
+
+         let filaID = '<tr><th>ID</th><td>' + result[0].id + ' </td></tr>';
+         let filaNombre = '<tr><th>Nombre</th><td>' + result[0].nombre + '</td></tr>';
+         let filaApellido = '<tr><th>Apellidos</th><td>' + result[0].apellidos + '</td></tr>';
+         let filaCiudad = '<tr><th>Ciudad</th><td>' + result[0].ciudad + '</td></tr>'; 
+    
+         tabla.innerHTML = `<tbody>${filaID} ${filaNombre}${filaApellido}${filaCiudad}</tbody>`;
+        
+         let divTabla = document.getElementById('tabla');
+         divTabla.innerHTML = "";
+         divTabla.appendChild(tabla);
+         
+    };
+
+</script>
+
+
+</body>
+</html>

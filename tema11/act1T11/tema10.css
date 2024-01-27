@@ -1,0 +1,7 @@
+.nuevaTabla, th,td{
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
+    
+   
+}
