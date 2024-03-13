@@ -1,0 +1,43 @@
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Introduce tu nombre</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Introduce tu apellido</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>Ciudad</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="one">Cádiz</mat-option>
+      <mat-option value="two">Sevilla</mat-option>
+      <mat-option value="two">Málaga</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      @if (email.invalid) {
+        <mat-error>Introduce tu email</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Textarea</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  
+  

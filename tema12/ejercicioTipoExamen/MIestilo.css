@@ -1,0 +1,23 @@
+.tabla, th, tr, td{
+    border-collapse: collapse;
+    border-color: black;
+    border-style: solid;
+
+    td{
+        text-align: center;
+    }
+    .id{
+        background-color:cadetblue;
+        color: white;
+    }
+    .nombre{
+        background-color:darkgrey;
+        color: white;
+
+    }
+    .total{
+        background-color:grey;
+        color: white;
+    }
+}
+

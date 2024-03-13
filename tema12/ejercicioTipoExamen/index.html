@@ -1,0 +1,73 @@
+<!--
+Dado un archivo json cuyo contenido es un aarry de objetos
+1. Realiza un reanderizado del contenido
+## Peticion ayax -> promesaas
+## Jquery
+
+2. Pinta una tabla respetando los campos segun el contenido
+# Pintar todas las carteras
+
+3. Calcular el total de los costes segun los datos de cada cartera-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="MIestilo.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+   
+        <table class="tabla" id="tabla">
+            
+           
+        </table>
+  
+    <script>
+        // let carteras;
+        // fetch("carteras.json")
+        // .then( result => result.json())
+        // .then ( salida => {
+        //     pintarTabla(salida);
+        // })
+
+        $.getJSON("carteras.json", //JQuery
+        function(obj){
+           
+            pintarTabla(obj);
+        }
+        )
+            function pintarTabla(carteras){
+               
+                let filaID ;
+                let filaNombre;
+                let filaCoste;
+                let enMedio;
+                let filaTotal;
+                let total = 0;
+
+                // let tabla = document.getElementById("tabla");
+                let tabla = $("#tabla"); // JQuery
+                for(let i = 0; i<carteras.length; i++){
+                    filaID = `<tr><th class="id">ID</th><td class="id">${carteras[i].id}</td></tr>`;
+                    filaNombre = `<tr><th class="nombre">Nombre</th><td class="nombre">${carteras[i].nombre}</td></tr>`;
+                    enMedio = `<tr><th>Costes</th></tr>`;
+                      for(let key in carteras[i].costes){
+                        // let coste = `<td>${key}: ${carteras[i].costes[key]}</td>`;
+                        let coste = `<td>${key}</td><td>${carteras[i].costes[key]}</td>`;
+                        filaCoste += `<tr>${coste}</tr>`;
+                        total += parseFloat(carteras[i].costes[key]);
+                      }
+                        filaTotal =  `<tr ><th class="total">TOTAL</th><td class="total">${total}</td></tr>`;
+                    //   tabla.innerHTML += filaID + filaNombre + enMedio + filaCoste + filaTotal;
+                    tabla.append(filaID + filaNombre + enMedio + filaCoste + filaTotal); //JQUery
+                      filaCoste = "";
+                      filaTotal = 0;
+                    }
+            }
+
+    </script>
+</body>
+</html>

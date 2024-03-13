@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <form id="formulario">
+        <label for="nombre">Nombre</label> 
+        <input type="text" id="nombre" placeholder="Nombre" >
+        <label for="nombre">Apellido</label>
+        <input type="text" id="apellido" placeholder="Apellido" >
+        <button type="submit" id="enviar">Enviar</button>
+    </form>
+    <!-- <button type="button" id="mostrar" src="mostrarDatos">Mostrar</button> -->
+    <br><br><br>
+    <table id="tabla">
+        <thead>
+            <tr><th>Nombre</th><th>Apellido</th></tr>
+        </thead>
+        <tbody id="datos"></tbody>
+    </table>
+
+    <script src="peticion.js">
+    </script>
+</body>
+</html>

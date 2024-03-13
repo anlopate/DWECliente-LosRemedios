@@ -38,23 +38,7 @@
         //----------------------------------------------------------------------
         
         // ---------Ajax con jQuery --------------------------------------------
-        // let marcaForm =$("#marca").val();
-        // let modeloForm = $("#modelo").val();
-        // $.post("tarea2.php",
-        //         {
-        //             marca: marcaForm,
-        //             modelo: modeloForm,
-        //         },
-        //         function(obj){
-        //             obj=JSON.parse(obj);
-        //             $("#datos").html(`<h1>El coche es un ${obj.marca}  ${obj.modelo}.</h1>`)
-        //         }
-        // )
-        
-        //----------------------------------------------------------------------
-
-         // //--------- Ajax con jQuery ampliación-----------------------------------------
-         let marcaForm =$("#marca").val();
+        let marcaForm =$("#marca").val();
         let modeloForm = $("#modelo").val();
         $.post("tarea2.php",
                 {
@@ -63,10 +47,26 @@
                 },
                 function(obj){
                     obj=JSON.parse(obj);
-                    let fila = ` <tr><td>Marca</td><td>${obj.marca}</td></tr><tr><td>Modelo</td><td>${obj.modelo}</td></tr>`;
-                    $("#datos").append(fila);
+                    $("#datos").html(`<h1>El coche es un ${obj.marca}  ${obj.modelo}.</h1>`)
                 }
         )
+        
+        //----------------------------------------------------------------------
+
+         // //--------- Ajax con jQuery ampliación-----------------------------------------
+//          let marcaForm =$("#marca").val();
+//         let modeloForm = $("#modelo").val();
+//         $.post("tarea2.php",
+//                 {
+//                     marca: marcaForm,
+//                     modelo: modeloForm,
+//                 },
+//                 function(obj){
+//                     obj=JSON.parse(obj);
+//                     let fila = ` <tr><td>Marca</td><td>${obj.marca}</td></tr><tr><td>Modelo</td><td>${obj.modelo}</td></tr>`;
+//                     $("#datos").append(fila);
+//                 }
+//         )
 
     }
     $('form').submit(funAjax);// Provoca el evento en el formulario.

@@ -1,0 +1,12 @@
+mat-grid-tile {
+background-color: aqua;
+}
+mat-grid-list{
+  width:50%;
+  margin-left: 25%;
+  margin-top: 5em;
+}
+
+.example-card{
+  height: 200px;
+}
